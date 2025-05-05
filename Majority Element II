@@ -1,0 +1,21 @@
+class Solution {
+ public:
+     vector<int>majorityElement(vector<int>& nums) {
+        vector<int> result;
+         int n= nums.size();
+         for(int val:nums){
+             int freq=0;
+             if (find(result.begin(), result.end(), val) != result.end())
+                continue;
+             for(int el:nums){
+                 if(val==el){
+                     freq++;
+                 }
+             }
+             if(freq>n/3){
+             result.push_back(val);///max el
+             }
+     }
+     return result;
+     }
+ };
