@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        
+    map<pair<int, int>, int> count;
+    int total_pair = 0;
+
+
+    for (auto& d : dominoes) {
+        
+        int a = min(d[0], d[1]);
+        int b = max(d[0], d[1]);
+        pair<int, int> key = {a, b};
+
+
+        total_pair += count[key];
+
+        
+        count[key]++;
+    }
+
+    return total_pair;
+}
+
+};
