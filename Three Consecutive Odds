@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int n=arr.size();
+        //int odd=0;
+
+        for(int i = 0;i <=n - 3;i++)//hme 3 element ka hi puchha he ak sathh odd ho to hi true
+        {
+        if (arr[i] % 2 != 0 && arr[i+1] % 2 != 0 && arr[i+2] % 2 != 0)
+         {
+           /* if(arr[i] % 2 == 1){
+                odd++;
+            if(odd==3){*/
+               return true;
+          }
+        }
+        return false;
+    }
+};
