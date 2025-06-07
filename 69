@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        vector<int>s = {1,2,3,4,5};
+        for(int p : s){
+            p = pow(x,0.5);
+        }
+    
+    return static_cast<int>(sqrt(x));
+    }
+};
