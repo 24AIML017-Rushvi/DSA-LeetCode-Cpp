@@ -1,0 +1,15 @@
+class Solution {
+public:
+    char kthCharacter(int k) {
+        string sb = "a";
+    
+        while(sb.length()<k){
+            int n = sb.length();
+            for(int i=0;i<n;i++){
+                char nextchar = 'a' + ((sb[i]-'a'+ 1 )% 26);
+                sb += nextchar;
+            }
+        }
+        return sb[k-1];
+    }
+};
