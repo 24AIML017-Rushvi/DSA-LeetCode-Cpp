@@ -1,22 +1,38 @@
 class Solution {
 public:
     int maxFreeTime(int eventTime, int k, vector<int>& startTime, vector<int>& endTime) {
-        int count = startTime.size();
-        vector<int> prefixSum(count + 1, 0);
-        int maxFree = 0;
+        vector<int> freeArray; //store durations of free gaps
 
-        for (int i = 0; i < count; ++i) {
-            prefixSum[i + 1] = prefixSum[i] + (endTime[i] - startTime[i]);
+        
+        //ith start - i-1th ka end = free gap duration
+        freeArray.push_back(startTime[0]);
+
+        for(int i = 1; i < startTime.size(); i++) {
+            freeArray.push_back(startTime[i] - endTime[i-1]);
         }
 
-        for (int i = k - 1; i < count; ++i) {
-            int occupied = prefixSum[i + 1] - prefixSum[i - k + 1];
-            int windowEnd = (i == count - 1) ? eventTime : startTime[i + 1];
-            int windowStart = (i == k - 1) ? 0 : endTime[i - k];
-            int freeTime = windowEnd - windowStart - occupied;
-            maxFree = max(maxFree, freeTime);
+        freeArray.push_back(eventTime - endTime[endTime.size()-1]);
+
+        //Khandani sliding window
+
+        int i = 0;
+        int j = 0;
+        int maxSum = 0;
+        int currSum = 0;
+
+        int n = freeArray.size();
+        while(j < n) {
+            currSum += freeArray[j];
+
+            if(i < n && j-i+1 > k+1) {
+                currSum -= freeArray[i];
+                i++;
+            }
+
+            maxSum = max(maxSum, currSum);
+            j++;
         }
 
-        return maxFree;
+        return maxSum;
     }
 };
