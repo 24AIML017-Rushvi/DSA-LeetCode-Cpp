@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maximumLength(vector<int>& nums, int k)
+     {
+
+        vector<vector<int>> dp(k,vector<int>(k,0));
+        int maxlen = 0;
+
+        for(int num : nums){
+            int curr = num % k;
+            for(int pre = 0; pre < k; pre++){
+                dp[pre][curr] = dp[curr][pre] + 1;
+                maxlen = max(maxlen,dp[pre][curr] );
+            }
+        }
+        return maxlen;
+    }
+};
