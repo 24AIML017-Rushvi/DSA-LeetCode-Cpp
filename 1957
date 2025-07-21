@@ -1,0 +1,24 @@
+class Solution {
+    public String makeFancyString(String s) {
+
+        StringBuilder result = new StringBuilder();
+
+        int count = 1;//pehli vese hi rhegi is liye
+
+        result.append(s.charAt(0));
+        
+        int n = s.length();
+        for(int i=1;i<n;i++){
+            if(s.charAt(i)==s.charAt(i-1)){
+              count++;
+            }
+            else{
+                count=1;
+            }
+            if(count<3){
+                result.append(s.charAt(i));
+            }
+        }
+        return result.toString();
+    }
+};
