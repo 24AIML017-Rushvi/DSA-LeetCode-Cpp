@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxSum(vector<int>& nums) {
+
+         unordered_set<int>s;
+
+         int sum=0;
+         int maxnegative = INT_MIN;
+
+         for(int &num : nums) {
+             if(num<=0){
+               maxnegative = max(maxnegative,num);
+            }
+            else if(s.count(num)==0) {
+                sum+=num;
+                s.insert(num);
+            }
+         }    
+         return sum==0 ? maxnegative : sum; 
+    }
+};
